@@ -503,6 +503,7 @@
             }
         }
     </style>
+    <?= $this->renderSection('styles') ?? '' ?>
 </head>
 <body>
     <!-- Navbar -->

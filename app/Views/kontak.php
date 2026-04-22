@@ -2,73 +2,17 @@
 
 <?= $this->section('content') ?>
 
-<style>
-    .hero-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 4rem 0;
-        margin-bottom: 3rem;
-        text-align: center;
-        border-radius: 0 0 1.5rem 1.5rem;
-    }
-    .hover-lift {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .hover-lift:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-    }
-    .contact-icon-wrap {
-        width: 50px;
-        height: 50px;
-        background-color: rgba(13, 110, 253, 0.1);
-        color: var(--bs-primary);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 1.25rem;
-        flex-shrink: 0;
-    }
-    .map-container {
-        position: relative;
-        padding-bottom: 75%; /* Aspect Ratio 4:3 */
-        height: 0;
-        overflow: hidden;
-        border-radius: 0.5rem;
-    }
-    .map-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-    
-    /* Custom Form Styling */
-    .custom-form .form-control, 
-    .custom-form .form-select {
-        background-color: #f8f9fa;
-        border: 1px solid transparent;
-        transition: all 0.3s ease;
-    }
-    .custom-form .form-control:focus,
-    .custom-form .form-select:focus {
-        background-color: #ffffff;
-        border-color: var(--bs-primary);
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
-    }
-    .custom-form .form-floating label {
-        color: #6c757d;
-    }
-</style>
+<?= $this->section('styles') ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/kontak.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+<?= $this->endSection() ?>
 
-<div class="hero-section shadow-sm">
+<div class="hero-section shadow-sm contact-header">
     <div class="container">
-        <h1 class="fw-bold text-dark mb-3">
-            <i class="fas fa-headset text-primary me-2"></i>Hubungi Kami
+        <h1 class="fw-bold mb-3">
+            <i class="fas fa-headset me-2 text-primary"></i>Hubungi Kami
         </h1>
-        <p class="text-muted fs-5 mb-0">Punya pertanyaan, kritik, atau saran? Jangan ragu untuk mengirimkan pesan kepada tim kami.</p>
+        <p class="fs-5 mb-0">Punya pertanyaan, kritik, atau saran? Jangan ragu untuk mengirimkan pesan kepada tim kami.</p>
     </div>
 </div>
 
@@ -240,14 +184,12 @@
                     <h5 class="fw-bold text-dark"><i class="fas fa-map text-primary me-2"></i> Peta Lokasi</h5>
                 </div>
                 <div class="card-body p-3">
-                    <div class="map-container rounded shadow-sm">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126438.28548101438!2d110.29409865!3d-7.7940023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4d3684f71!2sYogyakarta%2C%20Yogyakarta%20City%2C%20Special%20Region%20of%20Yogyakarta!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+<iframe class="map-iframe" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126438.28548101438!2d110.29409865!3d-7.7940023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4d3684f71!2sYogyakarta%2C%20Yogyakarta%20City%20Special%20Region%20of%20Yogyakarta!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                 </div>
             </div>
 

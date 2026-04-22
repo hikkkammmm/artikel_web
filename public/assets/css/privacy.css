@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+.privacy-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.toc-sidebar {
+  width: 250px;
+  position: sticky;
+  top: 100px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  height: fit-content;
+  border: 1px solid #e5e7eb;
+}
+
+.toc-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #10B981;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin-bottom: 0.5rem;
+}
+
+.toc-list a {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  display: block;
+  padding: 0.5rem 0;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.toc-list a:hover {
+  color: #2563EB;
+  padding-left: 0.5rem;
+  border-left-color: #2563EB;
+}
+
+.toc-active {
+  color: #2563EB !important;
+  font-weight: 600 !important;
+  border-left-color: #2563EB !important;
+  padding-left: 0.5rem !important;
+}
+
+.policy-container .row {
+  align-items: flex-start !important;
+}
+
+.policy-container {
+  min-height: 80vh;
+}
+
+.toc-toggle {
+  display: none;
+  background: #10B981;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.privacy-container {
+  flex: 1;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border: 1px solid #f3f4f6;
+}
+
+.privacy-container h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.badge-last-update {
+  display: inline-block;
+  background: #DBEAFE;
+  color: #1E40AF;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(59,130,246,0.15);
+}
+
+.privacy-container h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 48px 0 24px 0;
+  scroll-margin-top: 100px;
+}
+
+.privacy-container h2:first-of-type {
+  margin-top: 0;
+}
+
+.section-highlight {
+  background: #F3F4F6;
+  padding: 32px;
+  border-radius: 12px;
+  border-left: 4px solid #10B981;
+  margin-bottom: 48px;
+}
+
+.privacy-container p,
+.privacy-container li {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.custom-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.custom-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10B981;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .privacy-wrapper {
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .toc-sidebar {
+    display: none;
+    width: 100%;
+  }
+  
+  .toc-toggle {
+    display: block !important;
+  }
+  
+  .privacy-container {
+    max-width: none;
+    padding: 24px 16px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .privacy-container h1 {
+    font-size: 28px;
+  }
+  
+  .privacy-container h2 {
+    font-size: 22px;
+    margin: 36px 0 20px 0;
+  }
+  
+  .section-highlight {
+    padding: 24px 20px;
+    margin-bottom: 36px;
+  }
+  
+  .toc-mobile {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-container {
+    padding: 20px 12px;
+  }
+  
+  .privacy-container p,
+  .privacy-container li {
+    font-size: 15px;
+  }
+}
