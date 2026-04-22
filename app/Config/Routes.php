@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Artikel::index');
 
 // Routes untuk Artikel
 $routes->get('artikel', 'Artikel::index');

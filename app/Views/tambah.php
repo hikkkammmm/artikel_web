@@ -32,6 +32,15 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             
+            <?php if (session()->getFlashdata('pesan')): ?>
+                <div class="alert alert-<?= (session()->getFlashdata('tipe_pesan') === 'success') ? 'success' : 'danger'; ?> alert-dismissible fade show" role="alert">
+                    <i class="fas fa-<?= (session()->getFlashdata('tipe_pesan') === 'success') ? 'check-circle' : 'exclamation-circle'; ?> me-2"></i>
+                    <strong><?= (session()->getFlashdata('tipe_pesan') === 'success') ? 'Berhasil!' : 'Error!'; ?></strong><br>
+                    <?= session()->getFlashdata('pesan'); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-body p-4 p-md-5">
                     <form method="POST" action="<?= base_url('artikel/simpan') ?>" enctype="multipart/form-data">
@@ -50,7 +59,7 @@
                             <label for="judul" class="form-label fw-semibold">
                                 <i class="fas fa-heading text-secondary me-1"></i> Judul Artikel
                             </label>
-                            <input type="text" class="form-control form-control-lg" id="judul" name="judul" placeholder="Masukkan judul artikel yang menarik..." required>
+                            <input type="text" class="form-control form-control-lg" id="judul" name="judul" placeholder="Masukkan judul artikel yang menarik..." value="<?= old('judul'); ?>" required>
                             <div class="form-text">Minimal 10 karakter, maksimal 200 karakter</div>
                         </div>
 
@@ -60,29 +69,37 @@
                                     <i class="fas fa-tag text-secondary me-1"></i> Kategori
                                 </label>
                                 <select class="form-select" id="kategori" name="kategori" required>
-                                    <option value="" selected disabled>Pilih Kategori...</option>
-                                    <option value="Teknologi">Teknologi</option>
-                                    <option value="Framework">Framework</option>
-                                    <option value="Desain">Desain</option>
-                                    <option value="Keamanan">Keamanan</option>
-                                    <option value="Database">Database</option>
-                                    <option value="DevOps">DevOps</option>
-                                    <option value="Mobile">Mobile Development</option>
+                                    <option value="" <?= (old('kategori') === '') ? 'selected' : ''; ?> disabled>Pilih Kategori...</option>
+                                    <option value="Teknologi" <?= (old('kategori') === 'Teknologi') ? 'selected' : ''; ?>>Teknologi</option>
+                                    <option value="Framework" <?= (old('kategori') === 'Framework') ? 'selected' : ''; ?>>Framework</option>
+                                    <option value="Desain" <?= (old('kategori') === 'Desain') ? 'selected' : ''; ?>>Desain</option>
+                                    <option value="Keamanan" <?= (old('kategori') === 'Keamanan') ? 'selected' : ''; ?>>Keamanan</option>
+                                    <option value="Database" <?= (old('kategori') === 'Database') ? 'selected' : ''; ?>>Database</option>
+                                    <option value="DevOps" <?= (old('kategori') === 'DevOps') ? 'selected' : ''; ?>>DevOps</option>
+                                    <option value="Mobile" <?= (old('kategori') === 'Mobile') ? 'selected' : ''; ?>>Mobile Development</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="author" class="form-label fw-semibold">
                                     <i class="fas fa-user text-secondary me-1"></i> Nama Penulis
                                 </label>
-                                <input type="text" class="form-control" id="author" name="author" placeholder="Contoh: John Doe" required>
+                                <input type="text" class="form-control" id="author" name="author" placeholder="Contoh: John Doe" value="<?= old('author'); ?>" required>
                             </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="tanggal" class="form-label fw-semibold">
+                                <i class="fas fa-calendar text-secondary me-1"></i> Tanggal Publikasi
+                            </label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= old('tanggal'); ?>" required>
+                            <div class="form-text">Pilih tanggal publikasi artikel</div>
                         </div>
 
                         <div class="mb-4">
                             <label for="excerpt" class="form-label fw-semibold">
                                 <i class="fas fa-quote-left text-secondary me-1"></i> Ringkasan Singkat
                             </label>
-                            <textarea class="form-control" id="excerpt" name="excerpt" rows="2" placeholder="Tuliskan ringkasan singkat untuk menarik pembaca..." required></textarea>
+                            <textarea class="form-control" id="excerpt" name="excerpt" rows="2" placeholder="Tuliskan ringkasan singkat untuk menarik pembaca..." required><?= old('excerpt'); ?></textarea>
                             <div class="form-text">Ringkasan ini akan ditampilkan di halaman preview artikel (maksimal 200 karakter).</div>
                         </div>
 
@@ -90,16 +107,16 @@
                             <label for="isi" class="form-label fw-semibold">
                                 <i class="fas fa-file-alt text-secondary me-1"></i> Isi Artikel
                             </label>
-                            <textarea class="form-control" id="isi" name="isi" rows="12" placeholder="Tulis isi lengkap artikel Anda di sini..." required></textarea>
+                            <textarea class="form-control" id="isi" name="isi" rows="12" placeholder="Tulis isi lengkap artikel Anda di sini..." required><?= old('isi'); ?></textarea>
                             <div class="form-text">Minimal 500 karakter.</div>
                         </div>
 
                         <div class="mb-4">
                             <label for="gambar" class="form-label fw-semibold">
-                                <i class="fas fa-image text-secondary me-1"></i> Upload Gambar Thumbnail
+                                <i class="fas fa-image text-secondary me-1"></i> URL Gambar Thumbnail
                             </label>
-                            <input type="file" class="form-control" id="gambar" name="gambar" accept="image/jpeg, image/png, image/gif">
-                            <div class="form-text">Format yang diizinkan: JPG, PNG, GIF (Maksimal: 5MB)</div>
+                            <input type="url" class="form-control" id="gambar" name="gambar" placeholder="Contoh: https://images.unsplash.com/..." value="<?= old('gambar'); ?>">
+                            <div class="form-text">Gunakan URL gambar dari Unsplash atau sumber lainnya. Biarkan kosong untuk menggunakan gambar default.</div>
                         </div>
 
                         <div class="bg-light p-4 rounded mb-4 border">

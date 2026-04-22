@@ -68,12 +68,41 @@ Teknik-teknik seperti denormalization, caching, dan query profiling dapat mening
         ]
     ];
 
+    // Path file JSON untuk penyimpanan artikel tambahan
+    private $jsonFile = WRITEPATH . 'data/artikel.json';
+
+    // Method helper untuk membaca artikel dari JSON
+    private function bacaArtikelJson()
+    {
+        if (!file_exists($this->jsonFile)) {
+            return [];
+        }
+        $json = file_get_contents($this->jsonFile);
+        return json_decode($json, true) ?? [];
+    }
+
+    // Method helper untuk menyimpan artikel ke JSON
+    private function simpanArtikelJson($artikel)
+    {
+        $json = json_encode($artikel, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        return file_put_contents($this->jsonFile, $json) !== false;
+    }
+
+    // Method untuk mendapatkan semua artikel (bawaan + JSON)
+    private function getSemuaArtikel()
+    {
+        $artikelBawaan = $this->artikel;
+        $artikelJson = $this->bacaArtikelJson();
+        return array_merge($artikelBawaan, $artikelJson);
+    }
+
     public function index()
     {
+        $semuaArtikel = $this->getSemuaArtikel();
         $data = [
             'title' => 'Portal Berita Teknologi',
-            'artikel' => $this->artikel,
-            'total' => count($this->artikel)
+            'artikel' => $semuaArtikel,
+            'total' => count($semuaArtikel)
         ];
 
         return view('home', $data);
@@ -85,8 +114,9 @@ Teknik-teknik seperti denormalization, caching, dan query profiling dapat mening
             return redirect()->to('/');
         }
 
+        $semuaArtikel = $this->getSemuaArtikel();
         $artikel = null;
-        foreach ($this->artikel as $art) {
+        foreach ($semuaArtikel as $art) {
             if ($art['id'] == $id) {
                 $artikel = $art;
                 break;
@@ -100,7 +130,7 @@ Teknik-teknik seperti denormalization, caching, dan query profiling dapat mening
         $data = [
             'title' => $artikel['judul'],
             'artikel' => $artikel,
-            'semuaArtikel' => $this->artikel
+            'semuaArtikel' => $semuaArtikel
         ];
 
         return view('detail', $data);
@@ -126,12 +156,50 @@ Teknik-teknik seperti denormalization, caching, dan query profiling dapat mening
 
     public function simpan()
     {
-        // Simulasi penyimpanan artikel (tidak benar-benar disimpan)
+        // Ambil input dari form
+        $judul = $this->request->getPost('judul');
+        $kategori = $this->request->getPost('kategori');
+        $author = $this->request->getPost('author');
+        $tanggal = $this->request->getPost('tanggal');
+        $excerpt = $this->request->getPost('excerpt');
+        $isi = $this->request->getPost('isi');
+        $gambar = $this->request->getPost('gambar');
+        
         $session = session();
 
-        $session->setFlashdata('pesan', 'Artikel berhasil ditambahkan! (Simulasi - data tidak disimpan)');
+        // Validasi sederhana - semua field wajib diisi
+        if (empty($judul) || empty($kategori) || empty($author) || empty($tanggal) || empty($excerpt) || empty($isi)) {
+            $session->setFlashdata('pesan', 'Error: Semua field wajib diisi!');
+            $session->setFlashdata('tipe_pesan', 'danger');
+            
+            return redirect()->to('/artikel/tambah')->withInput();
+        }
+
+        // Jika validasi lolos, buat artikel baru dari input
+        // ID unik: mulai dari 1000 untuk menghindari bentrok dengan artikel bawaan (1-5)
+        $artikelJson = $this->bacaArtikelJson();
+        $idBaru = 1000 + count($artikelJson) + 1;
+        
+        $artikelBaru = [
+            'id' => $idBaru,
+            'judul' => $judul,
+            'kategori' => $kategori,
+            'author' => $author,
+            'tanggal' => $tanggal,
+            'gambar' => !empty($gambar) ? $gambar : 'https://images.unsplash.com/photo-1516321325253-23cc6f90ba49?w=600&h=400&fit=crop',
+            'excerpt' => $excerpt,
+            'isi' => $isi
+        ];
+
+        // Simpan artikel baru ke JSON
+        $artikelJson[] = $artikelBaru;
+        $this->simpanArtikelJson($artikelJson);
+
+        // Set flash message sukses
+        $session->setFlashdata('pesan', 'Artikel berhasil ditambahkan dan tersimpan permanen!');
         $session->setFlashdata('tipe_pesan', 'success');
 
+        // Redirect ke halaman artikel (home)
         return redirect()->to('/artikel');
     }
 }

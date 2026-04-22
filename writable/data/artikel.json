@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1001,
+        "judul": "Desain UI\/UX menggunakan figma",
+        "kategori": "Teknologi",
+        "author": "hikam",
+        "tanggal": "2026-04-22",
+        "gambar": "https:\/\/images.unsplash.com\/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+        "excerpt": "Figma adalah tools desain UI\/UX berbasis web yang memudahkan pembuatan tampilan aplikasi secara kolaboratif dan efisien, baik untuk pemula maupun profesional.",
+        "isi": "Desain UI\/UX merupakan salah satu aspek penting dalam pengembangan aplikasi dan website. UI (User Interface) berfokus pada tampilan visual seperti warna, layout, dan tipografi, sedangkan UX (User Experience) berfokus pada bagaimana pengguna berinteraksi dengan sistem agar nyaman dan mudah digunakan.\r\n\r\nSalah satu tools yang paling populer untuk desain UI\/UX adalah Figma. Figma adalah aplikasi berbasis web yang memungkinkan desainer untuk membuat desain secara online tanpa perlu instalasi. Selain itu, Figma juga mendukung kolaborasi secara real-time, sehingga sangat cocok digunakan oleh tim.\r\n\r\nDengan Figma, kita dapat membuat berbagai jenis desain seperti wireframe, prototype, hingga desain final. Fitur drag-and-drop yang mudah digunakan membuat proses desain menjadi lebih cepat dan efisien. Selain itu, tersedia banyak plugin yang dapat membantu meningkatkan produktivitas dalam mendesain.\r\n\r\nKeunggulan lain dari Figma adalah kemampuannya untuk diakses dari berbagai perangkat, baik laptop maupun browser, sehingga fleksibel untuk digunakan kapan saja dan di mana saja. Hal ini sangat membantu dalam kerja tim yang membutuhkan kolaborasi jarak jauh.\r\n\r\nKesimpulannya, Figma adalah pilihan yang tepat untuk belajar dan mengembangkan desain UI\/UX. Dengan kemudahan penggunaan dan fitur kolaborasi yang kuat, Figma menjadi tools yang sangat direkomendasikan bagi pemula maupun profesional."
+    }
+]
