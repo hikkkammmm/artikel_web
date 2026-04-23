@@ -60,6 +60,5 @@ Akses di browser: http://localhost:8080
 
 **Lisensi:** MIT
 
----
 
-> Otomatis dirangkum oleh AI dari struktur dan isi file proyek.
+---
